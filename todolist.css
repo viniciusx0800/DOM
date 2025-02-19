@@ -38,20 +38,21 @@ input[type="text"] {
 }
 
 button {
-    width: 15%;
+    width: 25%;
     background-color: #888;
     color: white;
     border: none;
+    margin: 1px;
     padding: 8px;
     font-size: 14px;
     border-radius: 4px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #777;
+#addBtn:hover{
+    background-color: #00ff88;
+    color: #333;
 }
-
 ul {
     list-style-type: none;
     padding: 0;
@@ -76,5 +77,6 @@ li {
 }
 
 .remove-btn:hover {
-    background-color: #777;
+    background-color: #ff0000;
 }
+
