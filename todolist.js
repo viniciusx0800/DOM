@@ -1,24 +1,40 @@
+const taskInput = document.getElementById("taskInput");
+const todoList = document.getElementById("todoList");
 
-const todoList = document.getElementById('todoList')
+let body = document.querySelector('body');
+body.style.backgroundColor = 'SteelBlue';
+
+let .concluida = document.querySelector('concluida');
+
 
 function adicionarTarefa(){
-    var tarefa = document.getElementById('taskInput').value
-    if(tarefa != ''){
+    const taskText = taskInput.value.trim();
+    if (taskText !== "") {
 
-        var novaTarefa = document.createElement('li')
+        const maxText = taskText.substring(0, 35);
 
-        var id = tarefa+Math.floor(Math.random() * 1000000)
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <span>${maxText}</span>
+            <button class="concluida" onClick="concluidTask(this)">concluida</button>
+            <button class="remove-btn" onClick="deleteTask(this)">Remover</button>
+        `;
+        todoList.appendChild(li);
+        taskInput.value = "";
 
-        novaTarefa.setAttribute('id', id)
-
-        novaTarefa.innerHTML = tarefa
-
-        var tex = document.createElement('o')
-        
-
-        novaTarefa.appendChild(tex)
-
-        lista.appendChild(novaTarefa)
     }
-    
 }
+
+
+
+function deleteTask(button) {
+    const li = button.parentElement;
+    todoList.removeChild(li);
+}
+
+
+function concluidTask(todoList) {
+    const li = todoList.parentElement;
+    li.classList.toggle("concluida");
+}
+
