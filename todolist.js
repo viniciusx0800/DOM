@@ -4,8 +4,6 @@ const todoList = document.getElementById("todoList");
 let body = document.querySelector('body');
 body.style.backgroundColor = 'SteelBlue';
 
-let .concluida = document.querySelector('concluida');
-
 
 function adicionarTarefa(){
     const taskText = taskInput.value.trim();
@@ -16,25 +14,31 @@ function adicionarTarefa(){
         const li = document.createElement("li");
         li.innerHTML = `
             <span>${maxText}</span>
-            <button class="concluida" onClick="concluidTask(this)">concluida</button>
+            <button class="butao_concluida" onClick="concluidTask(this)">concluida</button>
             <button class="remove-btn" onClick="deleteTask(this)">Remover</button>
         `;
-        todoList.appendChild(li);
+        
+        todoList.insertAdjacentElement("afterbegin", li);
         taskInput.value = "";
 
     }
 }
-
-
 
 function deleteTask(button) {
     const li = button.parentElement;
     todoList.removeChild(li);
 }
 
-
 function concluidTask(todoList) {
     const li = todoList.parentElement;
-    li.classList.toggle("concluida");
+    li.classList.toggle("feita");
 }
 
+let div = document.querySelector(".todo-container")
+
+div.insertAdjacentHTML('beforeend', '<button class="limpar-lista" onClick="limparTask()">Limpar</button>')
+
+function limparTask(){
+    let todoList = document.getElementById("todoList");
+    todoList.innerText = "";
+}
