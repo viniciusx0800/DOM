@@ -80,8 +80,19 @@ li {
     background-color: #ff0000;
 }
 
-.concluida{
+.feita{
     background: #0099ff;
   
  
+ }
+
+ 
+ .butao_concluida{
+    background: #888;
+  
+ 
+ }
+
+ .butao_concluida:hover{
+     background-color: #0099ff;
  }
