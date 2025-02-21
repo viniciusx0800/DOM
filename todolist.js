@@ -15,6 +15,7 @@ function adicionarTarefa(){
         li.innerHTML = `
             <span>${maxText}</span>
             <button class="butao_concluida" onClick="concluidTask(this)">concluida</button>
+            <button class="editaButton" onClick="editarTexto(this)">Editar</button>
             <button class="remove-btn" onClick="deleteTask(this), removeContador()">Remover</button>
         `;
         
@@ -65,3 +66,12 @@ function limparContador(){
 
 }
     
+
+function editarTexto(button) {
+    const li = button.parentElement;
+    const span = li.querySelector("span");
+    const newText = prompt("Editar tarefa:", span.textContent); 
+    if (newText !== null && newText.trim() !== "") {
+        span.textContent = newText.trim();
+    }
+}
