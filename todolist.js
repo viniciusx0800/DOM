@@ -15,7 +15,7 @@ function adicionarTarefa(){
         li.innerHTML = `
             <span>${maxText}</span>
             <button class="butao_concluida" onClick="concluidTask(this)">concluida</button>
-            <button class="remove-btn" onClick="deleteTask(this)">Remover</button>
+            <button class="remove-btn" onClick="deleteTask(this), removeContador()">Remover</button>
         `;
         
         todoList.insertAdjacentElement("afterbegin", li);
@@ -36,9 +36,32 @@ function concluidTask(todoList) {
 
 let div = document.querySelector(".todo-container")
 
-div.insertAdjacentHTML('beforeend', '<button class="limpar-lista" onClick="limparTask()">Limpar</button>')
+div.insertAdjacentHTML('beforeend', '<button class="limpar-lista" onClick="limparTask(), limparContador()">Limpar</button>')
 
 function limparTask(){
     let todoList = document.getElementById("todoList");
     todoList.innerText = "";
 }
+
+function AddCotador(){
+    var contador = document.querySelectorAll('#todoList li').length
+   console.log("contador", + contador)
+   document.getElementById('count').innerHTML = '<p> Tarefas : ' + (contador)
+
+}
+    
+function removeContador(){
+    var contador = document.querySelectorAll('#todoList li').length
+   console.log("contador", + contador)
+   document.getElementById('count').innerHTML = '<p> Tarefas : ' + (contador)
+
+}
+    
+
+function limparContador(){
+    var contador = document.querySelectorAll('#todoList li').length
+   console.log("contador", + contador)
+   document.getElementById('count').innerHTML = '<p> Tarefas : ' +  (contador)
+
+}
+    
