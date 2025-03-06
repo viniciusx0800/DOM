@@ -14,9 +14,9 @@ function adicionarTarefa(){
         const li = document.createElement("li");
         li.innerHTML = `
             <span>${maxText}</span>
-            <button class="butao_concluida" onClick="concluidTask(this)">concluida</button>
-            <button class="editaButton" onClick="editarTexto(this)">Editar</button>
-            <button class="remove-btn" onClick="deleteTask(this), removeContador()">Remover</button>
+            <button class="butao_concluida" onClick="concluidTask(this)"><i class="conclu fa-solid fa-circle-check" style="font-size:40px;"></i></button>
+            <button class="editaButton" onClick="editarTexto(this)"><i class="edit fa-solid fa-pen-to-square" style="font-size:40px;"></i></button>
+            <button class="remove-btn" onClick="deleteTask(this), removeContador()"><i class="remuv fa-solid fa-trash-can" style="font-size:40px;"></i></button>
         `;
         
         todoList.insertAdjacentElement("afterbegin", li);
@@ -37,7 +37,7 @@ function concluidTask(todoList) {
 
 let div = document.querySelector(".todo-container")
 
-div.insertAdjacentHTML('beforeend', '<button class="limpar-lista" onClick="limparTask(), limparContador()">Limpar</button>')
+div.insertAdjacentHTML('beforeend', '<button class="limpar-lista" onClick="limparTask(), limparContador()"><i class="fa-solid fa-broom-ball" style="font-size:40px;"></i></button>')
 
 function limparTask(){
     let todoList = document.getElementById("todoList");
