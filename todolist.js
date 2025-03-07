@@ -4,11 +4,9 @@ const todoList = document.getElementById("todoList");
 let body = document.querySelector('body');
 body.style.backgroundColor = 'SteelBlue';
 
-
 function adicionarTarefa(){
     const taskText = taskInput.value.trim();
     if (taskText !== "") {
-
         const maxText = taskText.substring(0, 35);
 
         const li = document.createElement("li");
@@ -16,56 +14,67 @@ function adicionarTarefa(){
             <span>${maxText}</span>
             <button class="butao_concluida" onClick="concluidTask(this)"><i class="conclu fa-solid fa-circle-check" style="font-size:40px;"></i></button>
             <button class="editaButton" onClick="editarTexto(this)"><i class="edit fa-solid fa-pen-to-square" style="font-size:40px;"></i></button>
-            <button class="remove-btn" onClick="deleteTask(this), removeContador()"><i class="remuv fa-solid fa-trash-can" style="font-size:40px;"></i></button>
+            <button class="remove-btn" onClick="deleteTask(this)"><i class="remuv fa-solid fa-trash-can" style="font-size:40px;"></i></button>
         `;
         
         todoList.insertAdjacentElement("afterbegin", li);
         taskInput.value = "";
 
+        
+        li.style.opacity = 0;
+        setTimeout(() => {
+            li.style.transition = 'opacity 0.5s, transform 0.5s';
+            li.style.opacity = 1;
+        }, 10); 
+
+        atualizarContador();
     }
 }
 
 function deleteTask(button) {
     const li = button.parentElement;
-    todoList.removeChild(li);
+
+   
+    li.style.transition = 'opacity 0.5s, transform 0.5s';
+    li.style.opacity = 0;
+    li.style.transform = 'translateY(20px)';
+
+   
+    setTimeout(() => {
+        todoList.removeChild(li);
+        atualizarContador();
+    }, 500); 
 }
 
-function concluidTask(todoList) {
-    const li = todoList.parentElement;
+function concluidTask(button) {
+    const li = button.parentElement;
     li.classList.toggle("feita");
 }
 
-let div = document.querySelector(".todo-container")
-
-div.insertAdjacentHTML('beforeend', '<button class="limpar-lista" onClick="limparTask(), limparContador()"><i class="fa-solid fa-broom-ball" style="font-size:40px;"></i></button>')
+let div = document.querySelector(".todo-container");
+div.insertAdjacentHTML('beforeend', '<button class="limpar-lista" onClick="limparTask()"><i class="fa-solid fa-broom-ball" style="font-size:40px;"></i></button>');
 
 function limparTask(){
-    let todoList = document.getElementById("todoList");
-    todoList.innerText = "";
+    const allItems = document.querySelectorAll("#todoList li");
+    allItems.forEach((item) => {
+      
+        item.style.transition = 'opacity 0.5s, transform 0.5s';
+        item.style.opacity = 0;
+        item.style.transform = 'translate(50px)';
+       
+        setTimeout(() => {
+            todoList.removeChild(item);
+            atualizarContador();
+        }, 500); 
+    });
+   
 }
 
-function AddCotador(){
-    var contador = document.querySelectorAll('#todoList li').length
-   console.log("contador", + contador)
-   document.getElementById('count').innerHTML = '<p> Tarefas : ' + (contador)
 
+function atualizarContador(){
+    const contador = document.querySelectorAll('#todoList li').length;
+    document.getElementById('count').textContent = `Tarefas: ${contador}`;
 }
-    
-function removeContador(){
-    var contador = document.querySelectorAll('#todoList li').length
-   console.log("contador", + contador)
-   document.getElementById('count').innerHTML = '<p> Tarefas : ' + (contador)
-
-}
-    
-
-function limparContador(){
-    var contador = document.querySelectorAll('#todoList li').length
-   console.log("contador", + contador)
-   document.getElementById('count').innerHTML = '<p> Tarefas : ' +  (contador)
-
-}
-    
 
 function editarTexto(button) {
     const li = button.parentElement;
