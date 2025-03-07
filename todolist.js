@@ -4,6 +4,12 @@ const todoList = document.getElementById("todoList");
 let body = document.querySelector('body');
 body.style.backgroundColor = 'SteelBlue';
 
+taskInput.addEventListener('keydown', function(event) {
+    if (event.key === "Enter") { 
+        adicionarTarefa(); 
+    }
+});
+
 function adicionarTarefa(){
     const taskText = taskInput.value.trim();
     if (taskText !== "") {
