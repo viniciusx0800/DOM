@@ -30,8 +30,7 @@ h1 {
 }
 
 input[type="text"] {
-    width: 84%;
-    height: 32px;
+    width: 80%;
     padding: 8px;
     font-size: 14px;
     border-radius: 4px;
@@ -39,133 +38,47 @@ input[type="text"] {
 }
 
 button {
+    width: 15%;
     background-color: #888;
     color: white;
     border: none;
-    margin: 4px;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
     cursor: pointer;
 }
 
-#addBtn{
-    position: relative;
-    top: -5px;
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
-    padding: 1px;
+button:hover {
+    background-color: #777;
 }
 
-#addBtn:hover{
-    background-color: #00ff88;
-    color: #333;
-}
 ul {
     list-style-type: none;
-    padding: 10px;
+    padding: 0;
 }
 
 li {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 10px;
-    background: #e0e0e0;
+    background-color: #e0e0e0;
     margin-bottom: 8px;
     border-radius: 4px;
-    text-align: justify;
 }
 
 .remove-btn {
-    position: relative;
-    width: 50px;
-    height: 50px;
-    background: #888;
-    padding: 1px;
+    background-color: #888;
+    color: white;
+    border: none;
+    padding: 5px 10px;
     border-radius: 4px;
-    left: 25px;
     cursor: pointer;
 }
 
 .remove-btn:hover {
-    background: #ff0000;
-    color: #1d252b;
-    transition: 0.5s;
+    background-color: #777;
 }
 
 .feita{
-    background: #0099ff;
-  
- 
- }
- 
- .editaButton{
-    position: relative;
-    left: 39px;
-    width: 50px;
-    height: 50px;
-    padding: 1px;
-    border-radius: 10px;
-    cursor: pointer;
- }
-
- .editaButton:hover{
-    background: #d1df0b;
-    color: #1d252b;
- }
- .butao_concluida{
-    position: relative;
-    left: 50px;
-    width: 50px;
-    height: 50px;
-    padding: 1px;
-    border-radius: 50%;
-    cursor: pointer;
- }
-
- .butao_concluida{
-    background: #888;
-  
- 
- }
-
- .butao_concluida:hover{
-     background: #0099ff;
-     color: #1d252b;
-     animation: rotate 0.5s linear infinite;
-    
- }
-
- 
-@keyframes rotate{
-    0%{
-        transform: rotate(5deg);
-    }
-
-    25%{
-        transform: rotate( -6deg);
-    }
-
-    50%{
-        transform: rotate(5deg);
-    }
-
-    75%{
-        transform: rotate(-5deg);
-    }
-
-    100%{
-        transform: rotate(5deg);
-    }
-}
-
-.limpar-lista{
-    width: 50px;
-    height: 50px;
-    padding: 1px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.limpar-lista:hover{
-    background: #95c7ca;
-    color: #1d252b;
+    background: #06dcf8;
 }
