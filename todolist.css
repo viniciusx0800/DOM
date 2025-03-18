@@ -49,7 +49,7 @@ button {
 }
 
 button:hover {
-    background-color: #777;
+    background-color: #52645d;
 }
 
 ul {
@@ -76,7 +76,7 @@ li {
 }
 
 .remove-btn:hover {
-    background-color: #777;
+    background-color: #ff0000;
 }
 
 .feita{
