@@ -72,7 +72,6 @@ function deleteTask(button) {
 function concluidTask(button) {
     const li = button.parentElement;
     li.classList.toggle("feita");
-    // CORRIGIR FUNÇÃO
 }
 
 // 4. Limpar a lista de tarefas
@@ -117,6 +116,37 @@ function editarTexto(button) {
     if (newText !== null && newText.trim() !== "") {
         span.textContent = newText.trim();
     }
+}
+
+
+// 9.  edição de texto da tarefa no input
+function editarTexto(button) {
+    const li = button.parentElement; 
+    const span = li.querySelector('span'); 
+    const textoAtual = span.textContent; 
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = textoAtual; 
+    span.replaceWith(input); 
+
+    input.focus();
+
+    input.addEventListener('blur', function() {
+        const novoTexto = input.value.trim();
+        if (novoTexto !== "") {
+            span.textContent = novoTexto; 
+        } else {
+            span.textContent = textoAtual; 
+        }
+        input.replaceWith(span); 
+    });
+
+    input.addEventListener('keydown', function(event) {
+        if (event.key === "Enter") {
+            input.blur(); 
+        }
+    });
 }
 
 // 11. Adicionar um filtro de tarefas (pendentes/concluídas)
@@ -164,8 +194,6 @@ botaoPendentes.style.backgroundColor = 'green';
 botaoPendentes.style.color = 'white';           
 botaoPendentes.style.padding = '10px';          
 botaoPendentes.style.margin = '2px'
-
-
 
 botaoConcluidas.style.backgroundColor = 'blue';
 botaoConcluidas.style.color = 'white';
