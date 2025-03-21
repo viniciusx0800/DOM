@@ -48,9 +48,9 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+/* button:hover {
     background-color: #52645d;
-}
+} */
 
 ul {
     list-style-type: none;
@@ -67,17 +67,17 @@ li {
 }
 
 .remove-btn {
-    background-color: #888;
-    color: white;
+    background-color: #fc0101;
+    /* color: rgb(255, 0, 0); */
     border: none;
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
 }
 
-.remove-btn:hover {
+/* .remove-btn:hover {
     background-color: #ff0000;
-}
+} */
 
 .feita{
     background: #06dcf8;
