@@ -108,6 +108,14 @@ function atualizarContador(){
 }
 
 
+    
+    var elemento = document.getElementById("count");
+  
+    elemento.style.color = "White"; 
+    elemento.style.fontSize = "25px";
+    elemento.style.fontFamily = " monospace"
+  
+
 // 6. Alterar o texto de uma tarefa
 function editarTexto(button) {
     const li = button.parentElement;
@@ -147,7 +155,25 @@ function editarTexto(button) {
             input.blur(); 
         }
     });
+
 }
+
+const subTitulo = document.querySelector("h3")
+
+subTitulo.style.color = "White"; 
+
+
+
+let flocos = document.querySelector(".filtro");
+
+flocos.insertAdjacentHTML('beforebegin', `
+    <select id="filtroTarefas" onchange="filtrarTarefas(this.value)">
+    
+        <option value="todas">Todas Tarefas</option>
+        <option value="pendentes">Tarefas Pendentes</option>
+        <option value="concluidas">Tarefas Concluídas</option>
+    </select>
+`);
 
 // 11. Adicionar um filtro de tarefas (pendentes/concluídas)
 function filtrarTarefas(tipo) {
@@ -175,36 +201,6 @@ function filtrarTarefas(tipo) {
     });
 }
 
-
-let filtro = document.createElement('div');
-filtro.innerHTML = `
-    <button  class="tarefa_pendentes" onclick="filtrarTarefas('pendentes')"><i class="fa-brands fa-product-hunt" style="font-size:20px;"></i></button>
-    <button class="tarefa_concluidas" onclick="filtrarTarefas('concluidas')"><i class="fa-brands fa-cuttlefish" style="font-size:20px;"></i></button>
-    <button class="todas_tarefas" onclick="filtrarTarefas('todas')"><i class="fa-brands fa-tumblr" style="font-size:20px;"></i></button>
-`;
-
-div.insertAdjacentElement('beforeend', filtro);
-
-const botaoPendentes = document.querySelector('.tarefa_pendentes');
-const botaoConcluidas = document.querySelector('.tarefa_concluidas');
-const botaoTodas = document.querySelector('.todas_tarefas');
-
-
-botaoPendentes.style.backgroundColor = 'green';  
-botaoPendentes.style.color = 'white';           
-botaoPendentes.style.padding = '10px';          
-botaoPendentes.style.margin = '2px'
-
-botaoConcluidas.style.backgroundColor = 'blue';
-botaoConcluidas.style.color = 'white';
-botaoConcluidas.style.padding = '10px';
-
-botaoTodas.style.backgroundColor = 'Gold';
-botaoTodas.style.color = 'white';
-botaoTodas.style.padding = '10px';
-botaoTodas.style.margin = '5px'
-
-
 const algoNovo = document.querySelector(".todo-container");
 div.insertAdjacentHTML('beforeend', '<div class="teste"><h2> VAI MELHORAR !!</h2></div>');
  
@@ -212,3 +208,18 @@ const geregere = document.querySelector('.teste')
 
 geregere.style.color = 'green'
 geregere.style.backgroundColor = 'White'
+
+taskInput.addEventListener('input', AlterarCordoBotao);
+
+
+function AlterarCordoBotao() {
+    if (taskInput.value.trim() === "") {
+        addButton.disabled = true;
+        addButton.style.backgroundColor = "gray";
+       
+    } else {
+        addButton.disabled = false;
+        addButton.style.backgroundColor = "green";
+       
+    }
+}
