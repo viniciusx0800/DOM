@@ -2,7 +2,7 @@ const taskInput = document.getElementById("taskInput");
 const todoList = document.getElementById("todoList");
 
 const body = document.querySelector('body');
-body.style.backgroundColor = '#5F9EA0';
+body.style.backgroundColor = 'DimGray';
 
 
 const texto = document.querySelector('h1')
@@ -16,7 +16,7 @@ alerta.style.textDecoration = 'none'
 
 const boxlist = document.querySelector(".todo-container");
 
-boxlist.style.backgroundColor = '#2F4F4F	';  
+  
 
 // 8. Adicionar uma tarefa com a tecla "Enter"
 taskInput.addEventListener('keydown', function(event) {
@@ -50,6 +50,8 @@ function adicionarTarefa(){
         }, 10); 
 
         atualizarContador();
+
+        AlterarCordoBotao();
     }
 }
 
@@ -105,6 +107,14 @@ function limparTask(){
 function atualizarContador(){
     const contador = document.querySelectorAll('#todoList li').length;
     document.getElementById('count').textContent = `Tarefas: ${contador}`;
+
+    // 16. Alterar o fundo da página dinamicamente
+    if (contador === 0) {
+        boxlist.style.backgroundColor = 'Silver';
+    } else {
+        boxlist.style.backgroundColor = 'DarkSlateGray';
+        
+    }
 }
 
 
@@ -211,10 +221,11 @@ geregere.style.backgroundColor = 'White'
 
 taskInput.addEventListener('input', AlterarCordoBotao);
 
-
+// 14. Alterar a cor do botão "Adicionar" com base no preenchimento do campo
 function AlterarCordoBotao() {
     if (taskInput.value.trim() === "") {
         addButton.disabled = true;
+       
         addButton.style.backgroundColor = "gray";
        
     } else {
@@ -223,3 +234,4 @@ function AlterarCordoBotao() {
        
     }
 }
+
