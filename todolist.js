@@ -33,9 +33,14 @@ function adicionarTarefa(){
 
         const li = document.createElement("li");
         li.innerHTML = `
-            <span>${maxText}</span>
+          
+            <span onclick="editarTexto(this)">${maxText}</span>
+              <select id="PrioridadeDaTarefa" onchange="Prioridade(this.value)">
+                <option value="Baixa">Baixa</option>
+                <option value="Media">Media</option>
+                <option value="Alta">Alta</option>
+            </select>       
             <button class="butao_concluida" onClick="concluidTask(this)"><i class="conclu fa-solid fa-circle-check" style="font-size:40px;"></i></button>
-            <button class="editaButton" onClick="editarTexto(this)"><i class="edit fa-solid fa-pen-to-square" style="font-size:40px;"></i></button>
             <button class="remove-btn" onClick="deleteTask(this)"><i class="remuv fa-solid fa-trash-can" style="font-size:40px;"></i></button>
         `;
         
@@ -126,20 +131,20 @@ function atualizarContador(){
     elemento.style.fontFamily = " monospace"
   
 
-// 6. Alterar o texto de uma tarefa
-function editarTexto(button) {
-    const li = button.parentElement;
-    const span = li.querySelector("span");
-    const newText = prompt("Editar tarefa:", span.textContent); 
-    if (newText !== null && newText.trim() !== "") {
-        span.textContent = newText.trim();
-    }
-}
+// // 6. Alterar o texto de uma tarefa
+// function editarTexto(button) {
+//     const li = button.parentElement;
+//     const span = li.querySelector("span");
+//     const newText = prompt("Editar tarefa:", span.textContent); 
+//     if (newText !== null && newText.trim() !== "") {
+//         span.textContent = newText.trim();
+//     }
+// }
 
 
 // 9.  edição de texto da tarefa no input
 function editarTexto(button) {
-    const li = button.parentElement; 
+    const li = button.parentElement;
     const span = li.querySelector('span'); 
     const textoAtual = span.textContent; 
 
@@ -234,4 +239,3 @@ function AlterarCordoBotao() {
        
     }
 }
-
