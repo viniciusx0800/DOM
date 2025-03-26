@@ -31,11 +31,13 @@ function adicionarTarefa(){
     if (taskText !== "") {
         const maxText = taskText.substring(0, 35);
 
+       
         const li = document.createElement("li");
         li.innerHTML = `
           
             <span onclick="editarTexto(this)">${maxText}</span>
               <select id="PrioridadeDaTarefa" onchange="Prioridade(this.value)">
+                <option value="Filtro">Filtro de prioridade</option>
                 <option value="Baixa">Baixa</option>
                 <option value="Media">Media</option>
                 <option value="Alta">Alta</option>
@@ -79,7 +81,16 @@ function deleteTask(button) {
 function concluidTask(button) {
     const li = button.parentElement;
     li.classList.toggle("feita");
+
+    const removeButton = li.querySelector(".remove-btn");
+    if (li.classList.contains("feita")) {
+        removeButton.style.backgroundColor = "green";  
+    } else {
+        removeButton.style.backgroundColor = "red";  
+    }
 }
+
+
 
 // 4. Limpar a lista de tarefas
 let div = document.querySelector(".todo-container");
@@ -183,7 +194,7 @@ let flocos = document.querySelector(".filtro");
 
 flocos.insertAdjacentHTML('beforebegin', `
     <select id="filtroTarefas" onchange="filtrarTarefas(this.value)">
-    
+        <option value="Filtro">Filtro de tarefas</option>
         <option value="todas">Todas Tarefas</option>
         <option value="pendentes">Tarefas Pendentes</option>
         <option value="concluidas">Tarefas Concluídas</option>
