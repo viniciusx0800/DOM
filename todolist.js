@@ -59,12 +59,16 @@ function adicionarTarefa(){
         atualizarContador();
 
         AlterarCordoBotao();
+
+        salvarAstarefasNoLocalstorage(maxText);
     }
 }
 
 // 2. Remover uma tarefa
 function deleteTask(button) {
     const li = button.parentElement;
+
+   
 
      // 7. Adicionar animação ao adicionar/remover tarefas
     li.style.transition = 'opacity 0.5s, transform 0.5s';
@@ -75,6 +79,9 @@ function deleteTask(button) {
         todoList.removeChild(li);
         atualizarContador();
     }, 500); 
+
+
+    removeLocalStorag();
 }
 
 // 3. Marcar tarefa como concluída
@@ -82,6 +89,7 @@ function concluidTask(button) {
     const li = button.parentElement;
     li.classList.toggle("feita");
 
+    // 17. Alterar a cor do botão "Remover" com base no status da tarefa
     const removeButton = li.querySelector(".remove-btn");
     if (li.classList.contains("feita")) {
         removeButton.style.backgroundColor = "green";  
@@ -117,6 +125,7 @@ function limparTask(){
         }, 500); 
     });
    
+    removeLocalStorag();
 }
 
 // 5. Contar o número de tarefas
@@ -126,7 +135,7 @@ function atualizarContador(){
 
     // 16. Alterar o fundo da página dinamicamente
     if (contador === 0) {
-        boxlist.style.backgroundColor = 'Silver';
+        boxlist.style.backgroundColor = '#d9d9d960';
     } else {
         boxlist.style.backgroundColor = 'DarkSlateGray';
         
@@ -195,9 +204,9 @@ let flocos = document.querySelector(".filtro");
 flocos.insertAdjacentHTML('beforebegin', `
     <select id="filtroTarefas" onchange="filtrarTarefas(this.value)">
         <option value="Filtro">Filtro de tarefas</option>
-        <option value="todas">Todas Tarefas</option>
-        <option value="pendentes">Tarefas Pendentes</option>
-        <option value="concluidas">Tarefas Concluídas</option>
+        <option value="todas">Todas</option>
+        <option value="pendentes">Pendentes</option>
+        <option value="concluidas">Concluídas</option>
     </select>
 `);
 
@@ -250,3 +259,43 @@ function AlterarCordoBotao() {
        
     }
 }
+
+
+// Funções de LocalStorage
+const salvarAstarefasNoLocalstorage = (task) => {
+    const taskText = getTarefaLocalstorag();
+    taskText.push({text: task, done: false}); 
+    localStorage.setItem("taskText", JSON.stringify(taskText));
+};
+
+const getTarefaLocalstorag = () => {
+    const taskText = JSON.parse(localStorage.getItem("taskText")) || [];
+    return taskText;
+};
+
+const removeLocalStorag = (text) => {
+    const taskText = getTarefaLocalstorag();
+    const filtroTarefas = taskText.filter((task) => task.text !== text);
+    localStorage.setItem("taskText", JSON.stringify(filtroTarefas));
+};
+
+const atualizarStatus = (text) => {
+    const taskText = getTarefaLocalstorag();
+    taskText.forEach((task) => {
+        if (task.text === text) {
+            task.done = !task.done;
+        }
+    });
+    localStorage.setItem("taskText", JSON.stringify(taskText));
+};
+
+const carregarTarefa = () => {
+    const taskText = getTarefaLocalstorag();
+    taskText.forEach((task) => {
+        saveTask(task.text, task.done, 0); 
+    });
+};
+
+carregarTarefa();
+
+
