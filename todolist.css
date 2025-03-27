@@ -1,7 +1,15 @@
 /* Estilos simples com tons de cinza */
 body {
+  
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.87)), 
+    url('assets/kung-fu-2.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #08080885;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,7 +20,7 @@ body {
 .todo-container {
     width: 100%;
     max-width: 400px;
-    background: #d9d9d9;
+    background: #d9d9d960;
     padding: 20px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
