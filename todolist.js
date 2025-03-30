@@ -60,6 +60,8 @@ function adicionarTarefa(){
 
         AlterarCordoBotao();
 
+        salvarTarefaNoLocalStorag(maxText);
+
     }
 }
 
@@ -77,6 +79,8 @@ function deleteTask(button) {
     setTimeout(() => {
         todoList.removeChild(li);
         atualizarContador();
+
+        removerTarefaDoLocalStorag(li);
     }, 500); 
 
 
@@ -95,6 +99,8 @@ function concluidTask(button) {
     } else {
         removeButton.style.backgroundColor = "red";  
     }
+
+    atualizarTarefaNoLocalStorag();
 }
 
 
@@ -124,7 +130,7 @@ function limparTask(){
         }, 500); 
     });
    
-    
+   localStorage.removeItem("tarefaAdicionada") 
 }
 
 // 5. Contar o número de tarefas
@@ -182,6 +188,8 @@ function editarTexto(button) {
             span.textContent = textoAtual; 
         }
         input.replaceWith(span); 
+
+        atualizarTarefaNoLocalStorag();
     });
 
     input.addEventListener('keydown', function(event) {
@@ -245,6 +253,83 @@ geregere.style.backgroundColor = 'White'
 
 taskInput.addEventListener('input', AlterarCordoBotao);
 
+
+//  13. Salvar tarefas no localStorage
+
+function salvarTarefaNoLocalStorag(tarefaTexto){
+    let tarefaAdicionada
+    if(localStorage.getItem("tarefaAdicionada") === null ){
+        tarefaAdicionada = []
+
+    }
+    else{
+        tarefaAdicionada = JSON.parse(localStorage.getItem("tarefaAdicionada"))
+    }
+    tarefaAdicionada.push(tarefaTexto)
+    localStorage.setItem("tarefaAdicionada", JSON.stringify(tarefaAdicionada))
+}
+
+
+function removerTarefaDoLocalStorag(tarefaExcluida){
+    let tarefaAdicionada
+    if(localStorage.getItem("tarefaAdicionada") === null ){
+        tarefaAdicionada = []
+
+    }
+    else{
+        tarefaAdicionada = JSON.parse(localStorage.getItem("tarefaAdicionada"))
+    }
+   const tarefaIndex = tarefaExcluida.querySelector("span").innerText
+   tarefaAdicionada.splice(tarefaAdicionada.indexOF(tarefaIndex), 1)
+   localStorage.setItem("tarefaAdicionada", JSON.stringify(tarefaAdicionada))
+}
+
+function atualizarTarefaNoLocalStorag(){
+    let tarefaAdicionada = []
+    document.querySelectorAll("#todoList li").forEach(function (li){
+        tarefaAdicionada.push(li.querySelector("span").innerText)
+    })
+    localStorage.setItem("tarefaAdicionada", JSON.stringify(tarefaAdicionada))
+}
+
+
+function carregarTarefaDoLocalStorag(){
+    let tarefaAdicionada
+    if(localStorage.getItem("tarefaAdicionada") === null ){
+        tarefaAdicionada = []
+
+    }
+    else{
+        tarefaAdicionada = JSON.parse(localStorage.getItem("tarefaAdicionada"))
+    }
+
+    tarefaAdicionada.forEach(function(tarefaTexto) {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <span onclick="editarTexto(this)">${tarefaTexto}</span>
+            <select id="PrioridadeDaTarefa" onchange="Prioridade(this.value)">
+                <option value="Filtro">Filtro de prioridade</option>
+                <option value="Baixa">Baixa</option>
+                <option value="Media">Media</option>
+                <option value="Alta">Alta</option>
+            </select>       
+            <button class="butao_concluida" onClick="concluidTask(this)">
+                <i class="conclu fa-solid fa-circle-check" style="font-size:40px;"></i>
+            </button>
+            <button class="remove-btn" onClick="deleteTask(this)">
+                <i class="remuv fa-solid fa-trash-can" style="font-size:40px;"></i>
+            </button>
+        `;
+
+        todoList.appendChild(li)
+
+    })
+}
+
+
+document.addEventListener('DOMContentLoaded', carregarTarefaDoLocalStorag);
+
+
 // 14. Alterar a cor do botão "Adicionar" com base no preenchimento do campo
 function AlterarCordoBotao() {
     if (taskInput.value.trim() === "") {
@@ -258,3 +343,4 @@ function AlterarCordoBotao() {
        
     }
 }
+
