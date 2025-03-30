@@ -60,7 +60,6 @@ function adicionarTarefa(){
 
         AlterarCordoBotao();
 
-        salvarAstarefasNoLocalstorage(maxText);
     }
 }
 
@@ -81,7 +80,7 @@ function deleteTask(button) {
     }, 500); 
 
 
-    removeLocalStorag();
+    
 }
 
 // 3. Marcar tarefa como concluída
@@ -125,7 +124,7 @@ function limparTask(){
         }, 500); 
     });
    
-    removeLocalStorag();
+    
 }
 
 // 5. Contar o número de tarefas
@@ -259,43 +258,3 @@ function AlterarCordoBotao() {
        
     }
 }
-
-
-// Funções de LocalStorage
-const salvarAstarefasNoLocalstorage = (task) => {
-    const taskText = getTarefaLocalstorag();
-    taskText.push({text: task, done: false}); 
-    localStorage.setItem("taskText", JSON.stringify(taskText));
-};
-
-const getTarefaLocalstorag = () => {
-    const taskText = JSON.parse(localStorage.getItem("taskText")) || [];
-    return taskText;
-};
-
-const removeLocalStorag = (text) => {
-    const taskText = getTarefaLocalstorag();
-    const filtroTarefas = taskText.filter((task) => task.text !== text);
-    localStorage.setItem("taskText", JSON.stringify(filtroTarefas));
-};
-
-const atualizarStatus = (text) => {
-    const taskText = getTarefaLocalstorag();
-    taskText.forEach((task) => {
-        if (task.text === text) {
-            task.done = !task.done;
-        }
-    });
-    localStorage.setItem("taskText", JSON.stringify(taskText));
-};
-
-const carregarTarefa = () => {
-    const taskText = getTarefaLocalstorag();
-    taskText.forEach((task) => {
-        saveTask(task.text, task.done, 0); 
-    });
-};
-
-carregarTarefa();
-
-
