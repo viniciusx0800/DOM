@@ -4,26 +4,14 @@ const todoList = document.getElementById("todoList");
 const body = document.querySelector('body');
 body.style.backgroundColor = 'DimGray';
 
-
 const texto = document.querySelector('h1')
 texto.style.color = 'White'
 texto.style.fontSize = '40px'
 
-
 const alerta = document.querySelector('abbr')
 alerta.style.textDecoration = 'none'
 
-
 const boxlist = document.querySelector(".todo-container");
-
-  
-
-// 8. Adicionar uma tarefa com a tecla "Enter"
-taskInput.addEventListener('keydown', function(event) {
-    if (event.key === "Enter") { 
-        adicionarTarefa(); 
-    }
-});
 
 // 1. Adicionar uma nova tarefa
 function adicionarTarefa(){
@@ -34,9 +22,9 @@ function adicionarTarefa(){
        
         const li = document.createElement("li");
         li.innerHTML = `
-          
+           
             <span onclick="editarTexto(this)">${maxText}</span>
-              <select id="PrioridadeDaTarefa" onchange="Prioridade(this.value)">
+            <select id="PrioridadeDaTarefa" onchange="Prioridade(this.value)">
                 <option value="Filtro">Filtro de prioridade</option>
                 <option value="Baixa">Baixa</option>
                 <option value="Media">Media</option>
@@ -64,6 +52,13 @@ function adicionarTarefa(){
 
     }
 }
+
+
+let tony = document.querySelector(".utron");
+
+tony.insertAdjacentHTML('beforebegin', `
+    
+`);
 
 // 2. Remover uma tarefa
 function deleteTask(button) {
@@ -142,7 +137,7 @@ function atualizarContador(){
     if (contador === 0) {
         boxlist.style.backgroundColor = '#d9d9d960';
     } else {
-        boxlist.style.backgroundColor = 'DarkSlateGray';
+        boxlist.style.backgroundColor = '#d9d9d960';
         
     }
 }
@@ -165,6 +160,14 @@ function atualizarContador(){
 //         span.textContent = newText.trim();
 //     }
 // }
+
+
+// 8. Adicionar uma tarefa com a tecla "Enter"
+taskInput.addEventListener('keydown', function(event) {
+    if (event.key === "Enter") { 
+        adicionarTarefa(); 
+    }
+});
 
 
 // 9.  edição de texto da tarefa no input
