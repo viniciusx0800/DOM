@@ -131,7 +131,7 @@ function limparTask(){
 // 5. Contar o número de tarefas
 function atualizarContador(){
     const contador = document.querySelectorAll('#todoList li').length;
-    document.getElementById('count').textContent = `Tarefas: ${contador}`;
+    document.getElementById('count').textContent = `Contar Tarefas: ${contador}`;
 
     // 16. Alterar o fundo da página dinamicamente
     if (contador === 0) {
@@ -145,8 +145,9 @@ function atualizarContador(){
 
     
     var elemento = document.getElementById("count");
-  
-    elemento.style.color = "White"; 
+
+    elemento.style.margin = "2%"
+    elemento.style.color = "black"; 
     elemento.style.fontSize = "25px";
     elemento.style.fontFamily = " monospace"
   
@@ -203,12 +204,6 @@ function editarTexto(button) {
 
 }
 
-const subTitulo = document.querySelector("h3")
-
-subTitulo.style.color = "White"; 
-
-
-
 let flocos = document.querySelector(".filtro");
 
 flocos.insertAdjacentHTML('beforebegin', `
@@ -219,6 +214,17 @@ flocos.insertAdjacentHTML('beforebegin', `
         <option value="concluidas">Concluídas</option>
     </select>
 `);
+
+var elemento = document.getElementById("filtroTarefas");
+elemento.style.backgroundColor = "rgba(13, 109, 93, 0.44)"
+elemento.style.margin = "2%"
+elemento.style.color = "rgb(2, 2, 2)"; 
+elemento.style.fontSize = "15px";
+elemento.style.cursor = "pointer";
+elemento.style.borderRadius = "25%"
+elemento.style.height = "30px"
+elemento.style.textAlign = "center"
+elemento.style.borderColor = "rgb(255, 255, 255)"
 
 // 11. Adicionar um filtro de tarefas (pendentes/concluídas)
 function filtrarTarefas(tipo) {
