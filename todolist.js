@@ -23,13 +23,13 @@ function adicionarTarefa(){
         const li = document.createElement("li");
         li.innerHTML = `
            
-            <span onclick="editarTexto(this)">${maxText}</span>
-            <select id="PrioridadeDaTarefa" onchange="Prioridade(this.value)">
+            <span onclick="editarTexto(this)">${maxText}</span> 
+            <select id="PrioridadeDaTarefa" onchange="Prioridade(this.parentElement, this.value)">
                 <option value="Filtro">Filtro de prioridade</option>
                 <option value="Baixa">Baixa</option>
-                <option value="Media">Media</option>
+                <option value="Media">Média</option>
                 <option value="Alta">Alta</option>
-            </select>       
+            </select>
             <button class="butao_concluida" onClick="concluidTask(this)"><i class="conclu fa-solid fa-circle-check" style="font-size:40px;"></i></button>
             <button class="remove-btn" onClick="deleteTask(this)"><i class="remuv fa-solid fa-trash-can" style="font-size:40px;"></i></button>
         `;
@@ -315,13 +315,13 @@ function carregarTarefaDoLocalStorag(){
     tarefaAdicionada.forEach(function(tarefaTexto) {
         const li = document.createElement("li");
         li.innerHTML = `
-            <span onclick="editarTexto(this)">${tarefaTexto}</span>
-            <select id="PrioridadeDaTarefa" onchange="Prioridade(this.value)">
+            <span onclick="editarTexto(this)">${tarefaTexto}</span>        
+            <select id="PrioridadeDaTarefa" onchange="Prioridade(this.parentElement, this.value)">
                 <option value="Filtro">Filtro de prioridade</option>
                 <option value="Baixa">Baixa</option>
-                <option value="Media">Media</option>
+                <option value="Media">Média</option>
                 <option value="Alta">Alta</option>
-            </select>       
+            </select>
             <button class="butao_concluida" onClick="concluidTask(this)">
                 <i class="conclu fa-solid fa-circle-check" style="font-size:40px;"></i>
             </button>
@@ -350,6 +350,29 @@ function AlterarCordoBotao() {
         addButton.disabled = false;
         addButton.style.backgroundColor = "green";
        
+    }
+}
+
+
+
+function Prioridade(tarefa, PrioridadeDaTarefa) {
+    switch (PrioridadeDaTarefa) {
+        case 'Filtro':
+            tarefa.style.backgroundColor = "LightGrey";  
+            tarefa.style.color = "black";
+            break;
+        case 'Baixa':
+            tarefa.style.backgroundColor = "#32CD32";
+            tarefa.style.color = "black";
+            break;
+        case 'Media':
+            tarefa.style.backgroundColor = "#FFFF60	";
+            tarefa.style.color = "black";
+            break;
+        case 'Alta':
+            tarefa.style.backgroundColor = "#B22222";
+            tarefa.style.color = "black";
+            break;
     }
 }
 
