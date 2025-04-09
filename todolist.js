@@ -342,9 +342,10 @@ document.addEventListener('DOMContentLoaded', carregarTarefaDoLocalStorag);
 // 14. Alterar a cor do botão "Adicionar" com base no preenchimento do campo
 function AlterarCordoBotao() {
     if (taskInput.value.trim() === "") {
+
         addButton.disabled = true;
-       
         addButton.style.backgroundColor = "gray";
+        addButton.style.cursor = "not-allowed";
        
     } else {
         addButton.disabled = false;
@@ -363,15 +364,15 @@ function Prioridade(tarefa, PrioridadeDaTarefa) {
             break;
         case 'Baixa':
             tarefa.style.backgroundColor = "#32CD32";
-            tarefa.style.color = "black";
+            tarefa.style.color = "Yellow";
             break;
         case 'Media':
             tarefa.style.backgroundColor = "#FFFF60	";
-            tarefa.style.color = "black";
+            tarefa.style.color = "OrangeRed";
             break;
         case 'Alta':
             tarefa.style.backgroundColor = "#B22222";
-            tarefa.style.color = "black";
+            tarefa.style.color = "GhostWhite";
             break;
     }
 }
