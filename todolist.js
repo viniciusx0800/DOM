@@ -354,26 +354,56 @@ function AlterarCordoBotao() {
     }
 }
 
-
-
+// 12 Adicionar uma tarefa com prioridade (Baixa, Média, Alta)
 function Prioridade(tarefa, PrioridadeDaTarefa) {
+    
+    let valorPrioridade;
     switch (PrioridadeDaTarefa) {
         case 'Filtro':
+            valorPrioridade = 0;
             tarefa.style.backgroundColor = "LightGrey";  
             tarefa.style.color = "black";
             break;
         case 'Baixa':
+            valorPrioridade = 1;
+            // 15. Alterar cores de fundo por nível de prioridade (Baixa, Média, Alta)
             tarefa.style.backgroundColor = "#32CD32";
+            // 19. Alterar a cor do texto de acordo com a prioridade
             tarefa.style.color = "Yellow";
             break;
         case 'Media':
-            tarefa.style.backgroundColor = "#FFFF60	";
+            valorPrioridade = 2;
+            tarefa.style.backgroundColor = "#FFFF60";
             tarefa.style.color = "OrangeRed";
             break;
         case 'Alta':
+            valorPrioridade = 3;
             tarefa.style.backgroundColor = "#B22222";
             tarefa.style.color = "GhostWhite";
             break;
     }
+
+    
+    tarefa.setAttribute('data-prioridade', valorPrioridade);
+
+    ordenarPorPrioridade();
+    atualizarTarefaNoLocalStorag();
 }
+
+
+function ordenarPorPrioridade() {
+    const tarefas = Array.from(todoList.children);
+
+    tarefas.sort((a, b) => {
+        const prioridadeA = parseInt(a.getAttribute('data-prioridade')) || 0;
+        const prioridadeB = parseInt(b.getAttribute('data-prioridade')) || 0;
+        return prioridadeB - prioridadeA; 
+    });
+
+    
+    tarefas.forEach(tarefa => {
+        todoList.appendChild(tarefa);
+    });
+}
+
 
